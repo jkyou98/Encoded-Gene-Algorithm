@@ -1,0 +1,111 @@
+clc
+clear
+close all
+pop_size=100;
+maxgen=100;
+c_r=0.75;
+m_r=0.01;
+N=1;
+while N<51
+    lambda=rand(1);
+    r_x1=par(-5.12,5.12,[10,30]);
+    R=r_x1;
+    n=1;
+    while n<maxgen+1
+        eval=evalu(R);        
+        [M,I]=max(eval);
+        Max(n,:)=[M,I,R(I,1:30)];
+        eval=1./eval;
+        F=sum(eval);
+        pp=eval./F;
+        [j,k]=size(pp);
+        for ii=1:j
+            q(ii,:)=sum(pp(1:ii,:));
+        end
+        r1=rand([j,1]);
+        for ii1=1:j
+            for ii2=1:j-1
+                if r1(ii1)>q(ii2) &&r1(ii1)<q(ii2+1)
+                    v_new(ii1,:)=R(ii2+1,:);
+                elseif r1(ii1)<q(j)   
+                    v_new(ii1,:)=R(j,:);
+                end
+            end
+        end
+        A=crossover(v_new,c_r,lambda);
+        B=mutate(A,m_r,n,maxgen,5.12,-5.12);
+        R=B;
+        n=n+1;
+    end
+    Max2(:,N)=Max(:,1);
+    N=N+1;
+end
+MEAN=mean(Max2(n-1,1:N-1))
+STD=std(Max2(n-1,1:N-1))
+figure()
+Mean= mean(Max2,2);
+plot(Mean)
+function y=par(down,up,size)
+    y=down+(up-down)*rand(size);
+end
+function y=evalu(x1)
+    A=x1(1:10,:).*x1(1:10,:);
+    y=sum(A,2);
+end
+function y=crossover(parent,crossover_rate,lambda)
+    [m,~]=size(parent);
+    n=0;
+    while n<100
+        n=n+1;
+        i2=1;
+        r=rand([m,1]);
+        cross=[];
+        index=[];
+        for i=1:m
+            if r(i)<crossover_rate
+                cross(i2,:)=parent(i,:);
+                index(i2,:)=i;
+                i2=i2+1;
+                       
+            end           
+        end   
+         [m1,~]=size(index);
+        c=mod(m1,2);
+        if c==0
+            break
+        end
+       
+    end
+    
+    for  i3=1:2:m1-1
+        p_new(i3,:)=cross(i3,:)*lambda+(1-lambda)*cross(i3+1,:);
+        p_new(i3+1,:)=cross(i3+1,:)*lambda+(1-lambda)*cross(i3,:);
+        parent(index(i3,:),:)=p_new(i3,:);
+        parent(index(i3+1,:),:)=p_new(i3+1,:);
+    end
+    y=parent;
+end
+function y=mutate(parent,mutate_rate,generation,max_generation,x1_max,x1_min)
+    [m,n]=size(parent);
+    r=rand(m,n);
+    r1=randi([0,1],[m,n]);
+    b=2;
+    C=parent;
+    for i1=1:m
+        for i2=1:n
+        
+            if r(i1,i2)<mutate_rate           
+                if r1(m,n)==1               
+                    delta1=(x1_max-parent(i1,i2))*r(i1,i2)*(1-generation/max_generation)^b;
+                    x1_m=parent(i1,i2)+delta1;
+                    C(i1,i2)=x1_m;
+                else 
+                    delta1=(parent(i1,i2)-x1_min)*r(i1,i2)*(1-generation/max_generation)^b;
+                    x1_m=parent(i1,i2)-delta1;
+                    C(i1,i2)=x1_m;   
+                end            
+            end
+        end
+    end
+    y=C;
+end    
