@@ -31,6 +31,10 @@ This project demonstrates:
 ## 📊 Results
 
 ### 🔹 Problem 1
+$$\max f(x_1, x_2) = 21.5 + x_1 \sin(4 \pi x_1) + x_2 \sin(20 \pi x_2)$$
+
+$$-3.0 \leq x_1 \leq 12.1, \quad 4.1 \leq x_2 \leq 5.8 $$
+
 Comparison of **real-number vs binary encoding**:
 
 | Encoding | Mean    | Std.   | Corr.   |
@@ -43,6 +47,18 @@ Comparison of **real-number vs binary encoding**:
 ---
 
 ### 🔹 Problem 2
+$$\min f(x) = (x_1 - 2)^2 + (x_2 - 1)^2$$
+
+$$\text{s.t. } 
+\begin{cases}
+g_1(x) = x_1 - 2x_2 + 1 = 0, \\
+g_2(x) = \dfrac{x_1^2}{4} - x_2^2 + 1 \geq 0
+\end{cases}$$
+
+#### penalty function:
+$$P(x) = r_1 g_1(x) + r_2 g_2(x)$$
+
+
 With penalty function parameters (r1 = 1, r2 = 2):
 
 | Encoding | Mean   | Std.     |
@@ -55,6 +71,8 @@ With penalty function parameters (r1 = 1, r2 = 2):
 
 ### 🔹 Problem 3
 
+$$F(x) = \sum_{i=1}^n x_i^2, \quad \text{where } n = 30, \; -5.12 \leq x_i \leq 5.12 $$
+
 | Encoding | Mean     | Std.    |
 | -------- | -------- | ------- |
 | Real     | 254.9798 | 51.2087 |
@@ -64,13 +82,13 @@ With penalty function parameters (r1 = 1, r2 = 2):
 ## 🧮 Key Equations
 
 ### Fitness Function
-![fitness](https://latex.codecogs.com/svg.latex?f(x)%20=%20\frac{1}{1+g(x)})
+![fitness](https://latex.codecogs.com/png.latex?f(x)=\frac{1}{1+g(x)})
 
 ### Penalty Function (Problem 2)
-![penalty](https://latex.codecogs.com/svg.latex?g(x)%20=%20f(x)+r_1\cdot\text{violation}_1+r_2\cdot\text{violation}_2)
+![penalty](https://latex.codecogs.com/png.latex?g(x)%20=%20f(x)+r_1\cdot\text{violation}_1+r_2\cdot\text{violation}_2)
 
 ### GA Update Rule
-![ga](https://latex.codecogs.com/svg.latex?x^{t+1}_i%20=%20x^t_i%20+%20\alpha\cdot(x^t_{\text{best}}-x^t_i)%20+%20\beta\cdot\epsilon)
+![ga](https://latex.codecogs.com/png.latex?x^{t+1}_i%20=%20x^t_i%20+%20\alpha\cdot(x^t_{\text{best}}-x^t_i)%20+%20\beta\cdot\epsilon)
 
 ---
 
