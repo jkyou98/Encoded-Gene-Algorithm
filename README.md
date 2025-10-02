@@ -1,10 +1,10 @@
-# 🧬 Real Number Encoded Genetic Algorithm (GA)
+# Real Number Encoded Genetic Algorithm (GA)
 
 This repository contains a MATLAB implementation of a **real-number encoded genetic algorithm (GA)** and experimental comparisons with traditional **binary encoded GA** across multiple optimization problems.  
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 Genetic algorithms (GAs) are evolutionary optimization techniques inspired by natural selection.  
 While traditional GAs often use **binary encoding**, real-number encoding can be more efficient for continuous optimization problems.
@@ -16,7 +16,7 @@ This project demonstrates:
 
 ---
 
-## ⚙️ GA Parameters
+## GA Parameters
 
 | Parameter       | Problem 1 | Problem 2 | Problem 3 |
 | --------------- | --------- | --------- | --------- |
@@ -28,9 +28,9 @@ This project demonstrates:
 
 ---
 
-## 📊 Results
+## Results
 
-### 🔹 Problem 1
+### Problem 1
 $$\max f(x_1, x_2) = 21.5 + x_1 \sin(4 \pi x_1) + x_2 \sin(20 \pi x_2)$$
 
 $$-3.0 \leq x_1 \leq 12.1, \quad 4.1 \leq x_2 \leq 5.8 $$
@@ -42,11 +42,11 @@ Comparison of **real-number vs binary encoding**:
 | Real     | 23.9288 | 3.6685 | 60.8098 |
 | Binary   | 33.1731 | 3.0267 | 84.3020 |
 
-👉 Real-number encoding achieved **lower mean error** and **better stability**.
+-> Real-number encoding achieved **lower mean error** and **better stability**.
 
 ---
 
-### 🔹 Problem 2
+### Problem 2
 $$\min f(x) = (x_1 - 2)^2 + (x_2 - 1)^2$$
 
 $$\text{s.t. } 
@@ -65,11 +65,11 @@ With penalty function parameters (r1 = 1, r2 = 2):
 | -------- | ------ | -------- |
 | Real     | 0.0198 | 2.92e-04 |
 
-👉 Real-number GA converges to very small error values.
+->Real-number GA converges to very small error values.
 
 ---
 
-### 🔹 Problem 3
+### Problem 3
 
 $$F(x) = \sum_{i=1}^n x_i^2, \quad \text{where } n = 30, \; -5.12 \leq x_i \leq 5.12 $$
 
@@ -79,7 +79,7 @@ $$F(x) = \sum_{i=1}^n x_i^2, \quad \text{where } n = 30, \; -5.12 \leq x_i \leq 
 
 ---
 
-## 🧮 Key Equations
+## Key Equations
 
 ### Fitness Function
 ![fitness](https://latex.codecogs.com/png.latex?f(x)=\frac{1}{1+g(x)})
@@ -92,7 +92,7 @@ $$F(x) = \sum_{i=1}^n x_i^2, \quad \text{where } n = 30, \; -5.12 \leq x_i \leq 
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 ├── GA_1.m   # MATLAB implementation for Problem 1
@@ -104,7 +104,7 @@ $$F(x) = \sum_{i=1}^n x_i^2, \quad \text{where } n = 30, \; -5.12 \leq x_i \leq 
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 1. Open MATLAB or Octave  
 2. Run the desired GA implementation:
@@ -116,7 +116,7 @@ $$F(x) = \sum_{i=1}^n x_i^2, \quad \text{where } n = 30, \; -5.12 \leq x_i \leq 
 
 ---
 
-## 📝 Conclusion
+## Conclusion
 
 - **Real-number encoding** provides better performance for continuous optimization problems compared to **binary encoding**.  
 - The GA framework is flexible and can be adapted to a variety of constrained and unconstrained optimization tasks.  
